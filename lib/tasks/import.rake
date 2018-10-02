@@ -10,16 +10,18 @@ namespace :import do
 
   desc "TODO"
   task invoice_items: :environment do
-    CSV.foreach('./invoice_items.csv', headers: true) do |row|
+    CSV.foreach('./db/data/invoice_items.csv', headers: true) do |row|
     InvoiceItem.create(row.to_h)
    end
+   puts "Invoice items created!"
   end
 
   desc "TODO"
   task invoices: :environment do
-    CSV.foreach('./invoices.csv', headers: true) do |row|
+    CSV.foreach('./db/data/invoices.csv', headers: true) do |row|
     Invoice.create(row.to_h)
    end
+   puts "Invoices created!"
   end
 
   desc "TODO"
@@ -39,9 +41,10 @@ namespace :import do
 
   desc "TODO"
   task transactions: :environment do
-    CSV.foreach('./transactions.csv', headers: true) do |row|
+    CSV.foreach('./db/data/transactions.csv', headers: true) do |row|
     Transaction.create(row.to_h)
    end
+   puts "Transactions created!"
   end
 
 end
