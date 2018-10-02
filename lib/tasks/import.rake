@@ -2,9 +2,10 @@ require 'csv'
 namespace :import do
   desc "TODO"
   task customers: :environment do
-    CSV.foreach('./customers.csv', headers: true) do |row|
+    CSV.foreach('./db/data/customers.csv', headers: true) do |row|
     Customer.create(row.to_h)
    end
+   puts "Customers created!"
   end
 
   desc "TODO"
