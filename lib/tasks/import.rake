@@ -23,9 +23,10 @@ namespace :import do
 
   desc "TODO"
   task items: :environment do
-    CSV.foreach('../items.csv', headers: true) do |row|
+    CSV.foreach('./db/data/items.csv', headers: true) do |row|
     Item.create(row.to_h)
    end
+   puts "Items created!"
   end
 
   desc "TODO"
