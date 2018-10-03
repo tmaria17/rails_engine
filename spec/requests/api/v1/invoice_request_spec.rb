@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe 'invoices api' do
+  
   it 'sends a list of invoices' do
     merchant1 = Merchant.create!(name: "Ollivanders")
     merchant2 = Merchant.create!(name: "Hogs Head")
