@@ -1,4 +1,7 @@
 class InvoiceItem < ApplicationRecord
-  belongs_to :merchant
-  belongs_to :ccustomer
+  validates_presence_of :quantity,
+                        :unit_price
+  belongs_to :item
+  belongs_to :invoice
+  belongs_to  :merchant
 end
