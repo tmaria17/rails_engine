@@ -12,13 +12,14 @@ describe 'customers api' do
     expect(customers.count).to eq(20)
   end
 
-  # it 'finds one item'do
-  #
-  #   get "/api/v1/items/#{item_id}"
-  #
-  #   item = JSON.parse(response.body)
-  #
-  #   expect(response).to be_successful
-  #   expect(item["id"]).to eq(item_id)
-  # end
+  it 'finds one customer'do
+    id = create(:customer).id
+
+    get "/api/v1/customers/#{id}"
+
+    customer = JSON.parse(response.body)
+
+    expect(response).to be_successful
+    expect(customer["id"]).to eq(id)
+  end
 end
