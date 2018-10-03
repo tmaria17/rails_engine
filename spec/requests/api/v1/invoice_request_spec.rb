@@ -13,7 +13,7 @@ describe 'invoices api' do
     invoices = JSON.parse(response.body)
 
     expect(response).to be_successful
-    expect(invoices.count).to eq(20)
+    expect(invoices.count).to eq(2)
   end
 
   # it 'finds one invoice'do
