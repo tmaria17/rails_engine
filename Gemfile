@@ -37,6 +37,8 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'pry'
   gem 'active_designer'
+  gem 'simplecov', require: false, group: :test
+
 end
 
 group :development do
