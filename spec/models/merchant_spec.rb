@@ -40,6 +40,8 @@ RSpec.describe Merchant, type: :model do
       transaction4 = Transaction.create!(invoice_id: invoice4.id, credit_card_number: "33", credit_card_expiration_date: "2332234", result: "success")
 
       expect(Merchant.most_items(2)).to eq ([merchant1,merchant2])
+      expect(Merchant.most_revenue(1)).to eq ([merchant1])
+
     end
   end
 end

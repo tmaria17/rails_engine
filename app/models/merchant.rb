@@ -5,7 +5,7 @@ class Merchant < ApplicationRecord
   has_many  :customers, through: :invoices
   validates_presence_of :name
 
-  def self.total_revenue(quantity)
+  def self.most_revenue(quantity)
     joins(invoice_items: [:transactions])
     .where(transactions: {result: "success"})
     .order("sum(invoice_items.quantity) DESC")
