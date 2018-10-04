@@ -3,7 +3,7 @@ class Merchant < ApplicationRecord
   has_many  :invoices
   has_many :invoice_items, through: :invoices
   has_many  :customers, through: :invoices
-  validates_presence_of :name, :updated_at, :created_at
+  validates_presence_of :name
 
   def self.total_revenue(quantity)
     joins(invoice_items: [:transactions])
