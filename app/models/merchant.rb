@@ -5,10 +5,10 @@ class Merchant < ApplicationRecord
   has_many  :customers, through: :invoices
   validates_presence_of :name
 
-  def self.most_revenue(quantity)
+  def self.total_revenue(quantity)
     Merchant.joins(invoice_items: [:transactions])
     .where(transactions: {result: "success"})
-    .order("sum(invoice_items.quantity) DESC")
+    .order("sum(invoice_items.quantity * invoice_items.unit_price) DESC")
     .group(:id)
     .limit(quantity)
   end
@@ -16,7 +16,7 @@ class Merchant < ApplicationRecord
   def self.most_items(quantity)
     Merchant.joins(invoice_items: [:transactions])
     .where(transactions: {result: "success"})
-    .order("sum(invoice_items.quantity * invoice_items.unit_price) DESC")
+    .order("sum(invoice_items.quantity) DESC")
     .group(:id)
     .limit(quantity)
 
