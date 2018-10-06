@@ -47,4 +47,22 @@ describe 'Invoice relationships' do
     expect(items.count).to eq(2)
   end
 
+  it 'returns all invoice items for an invoice'do
+    merchant_id  = create(:merchant).id
+    customer_id  = create(:customer).id
+    invoice  = create(:invoice, merchant_id: merchant_id, customer_id: customer_id)
+    item1 = create(:item, merchant_id: merchant_id)
+    item2 = create(:item, merchant_id: merchant_id)
+    invoice_item1 = InvoiceItem.create!(quantity:1, unit_price: 12, invoice_id: invoice.id, item_id: item1.id)
+    invoice_item1 = InvoiceItem.create!(quantity:1, unit_price: 12, invoice_id: invoice.id, item_id: item2.id)
+
+    get "/api/v1/invoices/#{invoice.id}/invoice_items"
+
+    expect(response).to be_successful
+
+    invoice_items = JSON.parse(response.body)
+
+    expect(invoice_items.count).to eq(2)
+  end
+
 end

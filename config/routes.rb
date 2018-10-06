@@ -28,6 +28,8 @@ Rails.application.routes.draw do
         get '/:id/transactions', to: 'transactions#show'
         get '/:id/merchant', to: 'merchants#show'
         get '/:id/items', to: 'items#show'
+        get '/:id/invoice_items', to: 'invoice_items#show'
+
 
 
       end
