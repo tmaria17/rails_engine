@@ -5,6 +5,7 @@ Rails.application.routes.draw do
         get 'find', to: 'search#show'
         get 'find_all', to: 'search#index'
         get 'most_items', to: 'most_items#index'
+        get 'most_revenue', to: 'most_revenue#index'
       end
       namespace :items do
         get 'find', to: 'search#show'
@@ -26,7 +27,9 @@ Rails.application.routes.draw do
         get 'find', to: 'search#show'
         get 'find_all', to: 'search#index'
       end
-      resources :merchants, only:[:index, :show]
+      scope module: :merchants do
+        resources :merchants, only:[:index, :show]
+      end
       resources :items, only:[:index, :show]
       resources :customers, only:[:index, :show]
       resources :invoices, only: [:index, :show]

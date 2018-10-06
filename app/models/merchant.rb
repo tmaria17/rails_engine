@@ -6,19 +6,23 @@ class Merchant < ApplicationRecord
   validates_presence_of :name
 
   def self.most_revenue(quantity)
-    joins(invoice_items: [:transactions])
+    Merchant.joins(invoice_items: [:transactions])
+    .where(transactions: {result: "success"})
+    .order("sum(invoice_items.quantity * invoice_items.unit_price) DESC")
+    .group(:id)
+    .limit(quantity)
+  end
+
+  def self.most_items(quantity)
+    Merchant.joins(invoice_items: [:transactions])
     .where(transactions: {result: "success"})
     .order("sum(invoice_items.quantity) DESC")
     .group(:id)
     .limit(quantity)
   end
 
-  def self.most_items(quantity)
-    joins(invoice_items: [:transactions])
-    .where(transactions: {result: "success"})
-    .order("sum(invoice_items.quantity * invoice_items.unit_price) DESC")
-    .group(:id)
-    .limit(quantity)
+  def self.revenue
+
 
   end
 end

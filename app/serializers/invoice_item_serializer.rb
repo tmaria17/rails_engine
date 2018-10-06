@@ -4,4 +4,8 @@ class InvoiceItemSerializer < ActiveModel::Serializer
              :item_id,
              :quantity,
              :unit_price
+
+  def unit_price
+    (object.unit_price.to_f / 100).to_s
+  end
 end
