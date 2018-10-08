@@ -6,6 +6,7 @@ class Merchant < ApplicationRecord
   validates_presence_of :name
 
 
+
   def self.most_revenue(quantity)
     Merchant.joins(invoice_items: [:transactions])
     .where(transactions: {result: "success"})
@@ -21,23 +22,14 @@ class Merchant < ApplicationRecord
     .group(:id)
     .limit(quantity)
   end
-  #
-  # def revenue_by_date(date)
-  #   # date = date.to_date
-  #
-  #   invoices.select("sum(invoice_items.quantity)")
-  #   .joins(invoice_items: [:transactions])
-  #   .where(transactions: {result: "success"})
-  #   .where("invoices.created_at BETWEEN ? AND ?", date.beginning_of_day, date.end_of_day)
-  #   .limit(1)
-  #   .take
-  # end
-
-  # def self.total_revenue(date)
-  #   Merchant.joins(invoice_items: [:transactions])
-  #   .where(transactions: {result: "success"})
-  #   .where(invoices.updated_at = date)
-  #   .sum('quantity*unit_price')
-  #
-  # end
+  def self.favorite_customer(merchant_id)
+    Customer
+    .select("customers.*, count(transactions.id) AS count")
+    .joins(:transactions, :merchants)
+    .group(:id)
+    .where(transactions: {result: "success"}, merchants: {id: merchant_id})
+    .order("count DESC")
+    .limit(1)
+    .first
+  end
 end
