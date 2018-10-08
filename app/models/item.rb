@@ -17,13 +17,15 @@ class Item < ApplicationRecord
     .limit(quantity)
   end
 
-  # def self.most_items
-  #   Item.joins(invoices: [:invoice_items, :transactions])
-  #   .where(transactions: {result: "success"})
-  #   .
-  #
-  #
-  # end
+  def self.most_items(quantity)
+    Item.joins(:invoice_items)
+    .select('sum(invoice_items.quantity) AS sold_items, items.*')
+    .group(:id)
+    .order(' sold_items DESC')
+    .limit(quantity)
+
+
+  end
 
 
 

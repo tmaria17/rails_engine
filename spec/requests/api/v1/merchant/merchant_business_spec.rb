@@ -12,14 +12,4 @@ require 'rails_helper'
 
      expect(response).to be_successful
    end
-
-   # it  ' should return the total revenue for that merchant across successful transactions '
-   #   get '/api/v1/merchants/2/revenue'
-   #
-   #   expect(response).to be_successful
-   # end
-
-
-
-
 end

@@ -6,4 +6,9 @@ require 'rails_helper'
 
      expect(response).to be_successful
    end
+   it 'should return the top items' do
+     get '/api/v1/items/most_items?/quantity=2'
+
+     expect(response).to be_successful
+   end
  end
