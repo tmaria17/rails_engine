@@ -22,4 +22,11 @@ describe 'Merchants api' do
     expect(response).to be_successful
     expect(merchant["id"]).to eq(id)
   end
+
+  it 'returns a random merchant' do
+
+    get "/api/v1/merchants/random.json"
+
+    expect(response).to be_successful
+  end
 end
