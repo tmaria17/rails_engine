@@ -13,8 +13,8 @@ class Api::V1::Items::SearchController < ApplicationController
   private
 
     def search_params
-      params[:created_at] = params[:created_at].to_s if params[:created_at]
-      params[:updated_at] = params[:updated_at].to_s if params[:updated_at]
+      # params[:created_at] = params[:created_at].parse("#{params[:created_at} 00:00:00 UTC") if params[:created_at]
+      # params[:updated_at] = params[:updated_at]..parse("#{params[:updated_at]} 00:00:00 UTC")if params[:updated_at]
        params[:unit_price] = params[:unit_price].delete('.').to_i if params[:unit_price]
        params.permit(:id, :name, :description, :unit_price, :merchant_id, :updated_at, :created_at)
     end
