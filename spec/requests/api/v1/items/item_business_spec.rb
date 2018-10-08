@@ -11,10 +11,4 @@ require 'rails_helper'
 
      expect(response).to be_successful
    end
-
-   it 'should return the best day for the item' do
-     get '/api/v1/items/1/best_day'
-
-     expect(response).to be_successful
-   end
  end

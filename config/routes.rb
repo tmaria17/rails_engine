@@ -9,7 +9,6 @@ Rails.application.routes.draw do
         get 'most_revenue', to: 'most_revenue#index'
         get '/:id/items', to: 'items#show'
         get '/:id/invoices', to: 'invoices#show'
-        get '/:id/favorite_customer', to: 'favorite_customer#show'
       end
       namespace :items do
         get 'find', to: 'search#show'
@@ -18,9 +17,6 @@ Rails.application.routes.draw do
         get '/:id/merchant', to: 'merchants#show'
         get 'most_revenue', to: 'most_revenue#index'
         get 'most_items', to: 'most_items#index'
-        get '/:id/best_day', to: 'best_day#show'
-
-
       end
       namespace :transactions do
         get 'find', to: 'search#show'
