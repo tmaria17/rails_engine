@@ -6,4 +6,3 @@ In oder to import CSV’s and create the corresponding records.
 
 rake import:all
 
-This project is currently incomplete
